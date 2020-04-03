@@ -60,29 +60,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScenarioTestCaseRunner.cs" />
     <Compile Include="ScenarioTestCase.cs" />
-    <Compile Include="ScenarioTestRunner.cs" />
     <Compile Include="ScreenplayAssemblyAttribute.cs" />
     <Compile Include="ScreenplayAttribute.cs" />
     <Compile Include="ScenarioAdapter.cs" />
     <Compile Include="IntegrationReader.cs" />
-    <Compile Include="Resources\ExceptionFormats.Designer.cs">
-      <DependentUpon>ExceptionFormats.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ScreenplayDiscoverer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ExceptionFormats.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LogicalName>ExceptionFormats.resources</LogicalName>
-      <LastGenOutput>ExceptionFormats.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

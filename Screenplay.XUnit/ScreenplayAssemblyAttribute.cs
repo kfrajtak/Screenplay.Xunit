@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using CSF.Screenplay.Integration;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace Screenplay.XUnit
 {
@@ -21,30 +17,6 @@ namespace Screenplay.XUnit
         /// <value>The integration.</value>
         public IScreenplayIntegration Integration => integration.Value;
 
-        /// <summary>
-        /// Gets the targets for this attribute (the affected tests).
-        /// </summary>
-        /// <value>The targets.</value>
-        //public override ActionTargets Targets => ActionTargets.Suite;
-
-        /// <summary>
-        /// Executes actions after any tests in the current assembly.
-        /// </summary>
-        /// <param name="test">Test.</param>
-        /*public override void AfterTest(ITest test)
-        {
-            Integration.AfterExecutedLastScenario();
-        }*/
-
-        /// <summary>
-        /// Executes actions before any tests in the current assembly.
-        /// </summary>
-        /// <param name="test">Test.</param>
-        /*public override void BeforeTest(ITest test)
-        {
-            Integration.BeforeExecutingFirstScenario();
-        }*/
-        
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Screenplay.XUnit.ScreenplayAssemblyAttribute"/> class.
         /// </summary>

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using CSF.Screenplay.Integration;
 using CSF.Screenplay.Scenarios;
 using Xunit.Abstractions;
-// using NUnit.Framework;
-// using NUnit.Framework.Interfaces;
 
 namespace Screenplay.XUnit
 {
@@ -16,8 +13,6 @@ namespace Screenplay.XUnit
     /// </summary>
     public class ScenarioAdapter
     {
-        internal const string ScreenplayScenarioKey = "Current scenario";
-
         readonly ITest featureSuite;
         readonly IMethodInfo scenarioMethod;
         readonly IScreenplayIntegration integration;
@@ -56,7 +51,7 @@ namespace Screenplay.XUnit
         /// Gets the feature identifier.
         /// </summary>
         /// <value>The feature identifier.</value>
-        public string FeatureId => "??" + featureSuite.GetHashCode();// .FullName;
+        public string FeatureId => featureSuite.GetHashCode().ToString();// .FullName;
 
         /// <summary>
         /// Creates a new Screenplay scenario using the state of the current instance, and the given integration.
@@ -114,40 +109,11 @@ namespace Screenplay.XUnit
         /// <param name="integration">Screenplay integration.</param>
         public ScenarioAdapter(ITest featureSuite, IMethodInfo scenarioMethod, IScreenplayIntegration integration)
         {
-            if (integration == null)
-                throw new ArgumentNullException(nameof(integration));
-            if (scenarioMethod == null)
-                throw new ArgumentNullException(nameof(scenarioMethod));
-            if (featureSuite == null)
-                throw new ArgumentNullException(nameof(featureSuite));
-
-            this.scenarioMethod = scenarioMethod;
-            this.featureSuite = featureSuite;
-            this.integration = integration;
-        }/*
-
-        /// <summary>
-        /// Gets a value which indicates whether a single test passed.
-        /// </summary>
-        /// <returns><c>true</c>, if the test was successful, <c>false</c> otherwise.</returns>
-        /// <param name="test">Test.</param>
-        public static bool GetSuccess(ITest test)
-        {
-            var result = TestContext.CurrentContext.Result;
-            return result.Outcome.Status == TestStatus.Passed;
+            this.scenarioMethod = scenarioMethod ?? throw new ArgumentNullException(nameof(scenarioMethod));
+            this.featureSuite = featureSuite ?? throw new ArgumentNullException(nameof(featureSuite));
+            this.integration = integration ?? throw new ArgumentNullException(nameof(integration));
         }
-
-        /// <summary>
-        /// Gets a value which indicates whether a single test failed.
-        /// </summary>
-        /// <returns><c>true</c>, if the test was a failure, <c>false</c> otherwise.</returns>
-        /// <param name="test">Test.</param>
-        public static bool GetFailure(ITest test)
-        {
-            var result = TestContext.CurrentContext.Result;
-            return result.Outcome.Status == TestStatus.Failed;
-        }*/
-
+        
         /// <summary>
         /// Gets an <see cref="IScenario"/> from a given NUnit test instance.
         /// </summary>

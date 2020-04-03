@@ -74,6 +74,7 @@ namespace Screenplay.XUnit
             diagnosticMessageSink.OnMessage(new DiagnosticMessage($"Running {Method.Name}"));
             var test = new XunitTest(this, DisplayName);
             BeforeTest(test);
+
             return base.RunAsync(diagnosticMessageSink, messageBus, constructorArguments, aggregator, cancellationTokenSource)
                 .ContinueWith(t =>
                 {
