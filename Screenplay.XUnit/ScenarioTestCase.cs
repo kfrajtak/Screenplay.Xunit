@@ -71,7 +71,6 @@ namespace Screenplay.XUnit
         /// <returns></returns>
         public override Task<RunSummary> RunAsync(IMessageSink diagnosticMessageSink, IMessageBus messageBus, object[] constructorArguments, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
         {
-            diagnosticMessageSink.OnMessage(new DiagnosticMessage($"Running {Method.Name}"));
             var test = new XunitTest(this, DisplayName);
             BeforeTest(test);
 
@@ -80,7 +79,6 @@ namespace Screenplay.XUnit
                 {
                     var success = !aggregator.HasExceptions;
                     AfterTest(test, success);
-                    diagnosticMessageSink.OnMessage(new DiagnosticMessage("Run continue " + Method.Name + " " + success));
                     return t.Result;
                 });
         }
