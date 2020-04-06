@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
@@ -22,5 +23,13 @@ namespace Screenplay.XUnit.AssemblyFixture
         /// <returns></returns>
         protected override ITestFrameworkExecutor CreateExecutor(AssemblyName assemblyName)
             => new ScenarioTestFrameworkExecutor(assemblyName, SourceInformationProvider, DiagnosticMessageSink);
+    }
+
+    public class ScenarioTestFrameworkDiscoverer : ITestFrameworkTypeDiscoverer
+    {
+        public Type GetTestFrameworkType(IAttributeInfo attribute)
+        {
+            return typeof(ScenarioTestFramework);
+        }
     }
 }

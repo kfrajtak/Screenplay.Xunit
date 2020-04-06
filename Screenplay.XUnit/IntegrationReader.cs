@@ -28,37 +28,6 @@ namespace Screenplay.XUnit
             }
         }
 
-        public IScreenplayIntegration GetIntegration(IAssemblyInfo assemblyInfo)
-        {
-            lock (syncRoot)
-            {
-                if (integration == null)
-                {
-                    if (assemblyInfo == null)
-                    {
-                        throw new ArgumentException("The test method must be inside a compiled assembly.");
-                    }
-
-                    var assemblyAttrib = assemblyInfo.GetCustomAttributes(typeof(ScreenplayAssemblyAttribute)).Cast<ScreenplayAssemblyAttribute>().FirstOrDefault();
-                    if (assemblyAttrib == null)
-                    {
-                        var message = string.Format("All test methods decorated with `{0}` must be contained within assemblies which are decorated with `{1}`; ...",
-                            nameof(ScreenplayAttribute), nameof(ScreenplayAssemblyAttribute));
-                        throw new InvalidOperationException(message);
-                    }
-
-                    integration = assemblyAttrib.Integration;
-                }
-            }
-
-            return integration;
-        }
-
-        /// <summary>
-        /// Gets the integration from a given NUnit test method.
-        /// </summary>
-        /// <returns>The integration.</returns>
-        /// <param name="assembly">Assembly</param>
         public IScreenplayIntegration GetIntegration(Assembly assembly)
         {
             lock (syncRoot)

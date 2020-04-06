@@ -8,7 +8,7 @@ namespace Screenplay.XUnit
     /// Indicates that the assembly contains Screenplay tests.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
-    [TestFrameworkDiscoverer("Screenplay.XUnit.AssemblyFixture.ScenarioTestFramework", "Screenplay.XUnit")]
+    [TestFrameworkDiscoverer("Screenplay.XUnit.AssemblyFixture.ScenarioTestFrameworkDiscoverer", "Screenplay.XUnit")]
     public class ScreenplayAssemblyAttribute : Attribute, ITestFrameworkAttribute
     {
         static Lazy<IScreenplayIntegration> integration;

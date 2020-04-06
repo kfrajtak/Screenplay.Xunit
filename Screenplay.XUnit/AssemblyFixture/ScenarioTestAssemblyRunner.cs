@@ -41,7 +41,7 @@ namespace Screenplay.XUnit.AssemblyFixture
             // Let everything initialize
             await base.AfterTestAssemblyStartingAsync();
 
-            var integration = integrationReader.GetIntegration(TestAssembly.Assembly);
+            var integration = integrationReader.GetIntegration(((ReflectionAssemblyInfo)TestAssembly.Assembly).Assembly);
             integration.BeforeExecutingFirstScenario();
         }
 
@@ -51,7 +51,7 @@ namespace Screenplay.XUnit.AssemblyFixture
         /// <returns></returns>
         protected override Task BeforeTestAssemblyFinishedAsync()
         {
-            var integration = integrationReader.GetIntegration(TestAssembly.Assembly);
+            var integration = integrationReader.GetIntegration(((ReflectionAssemblyInfo)TestAssembly.Assembly).Assembly);
             integration.AfterExecutedLastScenario();
 
             return base.BeforeTestAssemblyFinishedAsync();
