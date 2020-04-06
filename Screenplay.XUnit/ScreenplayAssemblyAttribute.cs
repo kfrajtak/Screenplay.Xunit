@@ -1,5 +1,6 @@
 ﻿using System;
 using CSF.Screenplay.Integration;
+using Xunit.Sdk;
 
 namespace Screenplay.XUnit
 {
@@ -7,7 +8,8 @@ namespace Screenplay.XUnit
     /// Indicates that the assembly contains Screenplay tests.
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false)]
-    public class ScreenplayAssemblyAttribute : Attribute
+    [TestFrameworkDiscoverer("Screenplay.XUnit.AssemblyFixture.ScenarioTestFramework", "Screenplay.XUnit")]
+    public class ScreenplayAssemblyAttribute : Attribute, ITestFrameworkAttribute
     {
         static Lazy<IScreenplayIntegration> integration;
 

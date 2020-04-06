@@ -29,9 +29,8 @@ namespace Screenplay.XUnit
         {
         }
 
-        public ScenarioTestCase() {
-        
-        }
+        [Obsolete]
+        public ScenarioTestCase() {}
 
         private readonly IntegrationReader integrationReader = new IntegrationReader();
 
@@ -48,15 +47,13 @@ namespace Screenplay.XUnit
         {
             Scenario = CreateScenario(TestMethod.Method, test);
 
-            var scenario = Scenario;//?? ScenarioAdapter.GetScenario(test);
-            // .Traits.Add(ScenarioAdapter.ScreenplayScenarioKey, scenario);
             var integration = integrationReader.GetIntegration(test);
-            integration.BeforeScenario(scenario);
+            integration.BeforeScenario(Scenario);
 
             // resolve arguments
             //Enumerable.Range(0, TestMethod.GetParameters().Length).Select(a => (object)null).ToArray();
             TestMethodArguments = TestMethod.Method.GetParameters()
-                .Select(p => scenario.DiContainer.TryResolve(p.ParameterType.ToRuntimeType()))
+                .Select(p => Scenario.DiContainer.TryResolve(p.ParameterType.ToRuntimeType()))
                 .ToArray();
         }
 
@@ -77,7 +74,7 @@ namespace Screenplay.XUnit
             return base.RunAsync(diagnosticMessageSink, messageBus, constructorArguments, aggregator, cancellationTokenSource)
                 .ContinueWith(t =>
                 {
-                    var success = !aggregator.HasExceptions;
+                    var success = !aggregator.HasExceptions && t.Result.Failed == 0;
                     AfterTest(test, success);
                     return t.Result;
                 });

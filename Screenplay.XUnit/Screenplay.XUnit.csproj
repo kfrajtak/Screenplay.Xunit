@@ -3,14 +3,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{78571AD2-4C55-4459-A4D9-2CD63A9AACC7}</ProjectGuid>
+    <ProjectGuid>{ED3C5B38-EA26-40D6-BC41-43CC71FFAD1F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Screenplay.XUnit</RootNamespace>
     <AssemblyName>Screenplay.XUnit</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <ReleaseVersion>1.0.0</ReleaseVersion>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
@@ -53,6 +52,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyFixture\ScenarioTestFramework.cs" />
+    <Compile Include="AssemblyFixture\ScenarioTestAssemblyRunner.cs" />
+    <Compile Include="AssemblyFixture\ScenarioTestCollectionRunner.cs" />
+    <Compile Include="AssemblyFixture\ScenarioTestFrameworkExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenarioTestCase.cs" />
     <Compile Include="ScreenplayAssemblyAttribute.cs" />
