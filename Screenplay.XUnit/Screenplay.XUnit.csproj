@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Screenplay.XUnit</RootNamespace>
     <AssemblyName>Screenplay.XUnit</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <ReleaseVersion>1.0.0</ReleaseVersion>
     <SignAssembly>false</SignAssembly>
     <NuGetPackageImportStamp>
@@ -37,6 +37,15 @@
     <Reference Include="CSF.Screenplay, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83989bab8a1a4730, processorArchitecture=MSIL">
       <HintPath>..\packages\CSF.Screenplay.1.0.0\lib\net45\CSF.Screenplay.dll</HintPath>
     </Reference>
+    <Reference Include="CSF.Screenplay.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83989bab8a1a4730, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSF.Screenplay.Reporting.1.0.0\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="CSF.Utils, Version=6.1.1.0, Culture=neutral, PublicKeyToken=83989bab8a1a4730, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="CSF.FlexDi">
       <HintPath>..\packages\CSF.FlexDi.1.0.2\lib\net45\CSF.FlexDi.dll</HintPath>
@@ -58,6 +67,8 @@
     <Compile Include="AssemblyFixture\ScenarioTestFrameworkExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenarioTestCase.cs" />
+    <Compile Include="ScenarioTestCaseRunner.cs" />
+    <Compile Include="ScenarioTestRunner.cs" />
     <Compile Include="ScreenplayAssemblyAttribute.cs" />
     <Compile Include="ScreenplayAttribute.cs" />
     <Compile Include="ScenarioAdapter.cs" />
@@ -65,6 +76,7 @@
     <Compile Include="ScreenplayDiscoverer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

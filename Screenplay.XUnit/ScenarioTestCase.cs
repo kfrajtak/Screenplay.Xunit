@@ -1,4 +1,5 @@
-﻿using CSF.Screenplay.Scenarios;
+﻿using CSF.FlexDi;
+using CSF.Screenplay.Scenarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,10 +52,24 @@ namespace Screenplay.XUnit
             integration.BeforeScenario(Scenario);
 
             // resolve arguments
-            //Enumerable.Range(0, TestMethod.GetParameters().Length).Select(a => (object)null).ToArray();
             TestMethodArguments = TestMethod.Method.GetParameters()
-                .Select(p => Scenario.DiContainer.TryResolve(p.ParameterType.ToRuntimeType()))
+                .Select(p => Scenario.DiContainer.TryResolve(p.ParameterType.ToRuntimeType()) ?? TryResolve(p, Scenario.DiContainer))
                 .ToArray();
+        }
+
+        private object TryResolve(IParameterInfo parameter, IContainer container)
+        {
+            if (parameter.ParameterType.ToRuntimeType() == typeof(ITestOutputHelper))
+            {
+                if (container.TryResolve<ITestOutputHelper>(out var helper))
+                {
+                    return helper;
+                }
+
+                return new TestOutputHelper();
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -68,16 +83,20 @@ namespace Screenplay.XUnit
         /// <returns></returns>
         public override Task<RunSummary> RunAsync(IMessageSink diagnosticMessageSink, IMessageBus messageBus, object[] constructorArguments, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
         {
-            var test = new XunitTest(this, DisplayName);
-            BeforeTest(test);
+            //var test = new XunitTest(this, DisplayName);
+            //BeforeTest(test);
 
-            return base.RunAsync(diagnosticMessageSink, messageBus, constructorArguments, aggregator, cancellationTokenSource)
+            return new ScenarioTestCaseRunner(
+                this, DisplayName, SkipReason,
+                constructorArguments, TestMethodArguments, messageBus,
+                aggregator, cancellationTokenSource)
+                .RunAsync();/*
                 .ContinueWith(t =>
                 {
                     var success = !aggregator.HasExceptions && t.Result.Failed == 0;
                     AfterTest(test, success);
                     return t.Result;
-                });
+                });*/
         }
 
         private void AfterTest(ITest test, bool success)
