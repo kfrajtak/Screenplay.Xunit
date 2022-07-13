@@ -15,9 +15,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: MSBuild
       uses: microsoft/setup-msbuild@v1
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+    - name: Restore Packages
+      run:  nuget restore Screenplay.XUnit.sln
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run:  msbuild.exe Screenplay.XUnit.sln   
