@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Screenplay.XUnit.xml</DocumentationFile>
     <ConsolePause>false</ConsolePause>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSF.Screenplay, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83989bab8a1a4730, processorArchitecture=MSIL">
