@@ -1,7 +1,4 @@
-﻿using CSF.Screenplay;
-using CSF.Screenplay.Reporting;
-
-namespace ScreenplayScenarios
+﻿namespace ScreenplayScenarios
 {
     public class ScreenplayIntegrationConfig : CSF.Screenplay.Integration.IIntegrationConfig
     {
