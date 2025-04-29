@@ -1,85 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{ED3C5B38-EA26-40D6-BC41-43CC71FFAD1F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Screenplay.XUnit</RootNamespace>
-    <AssemblyName>Screenplay.XUnit</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFramework>net452</TargetFramework>
     <ReleaseVersion>1.0.0</ReleaseVersion>
-    <SignAssembly>false</SignAssembly>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <AssemblyTitle>Screenplay.XUnit</AssemblyTitle>
+    <Company>CSF Software Limited</Company>
+    <Description>XUnit extensions for CSF.Screenplay</Description>
+    <Copyright>Copyright 2022</Copyright>
+    <Version>1.0.1</Version>
+    <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\$(Configuration)\Screenplay.XUnit.xml</DocumentationFile>
+    <Authors>Karel Frajták</Authors>
+    <PackageId>Screenplay.Xunit</PackageId>
+    <PackageProjectUrl>https://github.com/kfrajtak/Screenplay.Xunit</PackageProjectUrl>
+    <PackageTags>Xunit CSF.Screenplay BDD</PackageTags>
+    <UserSecretsId>d8ebd3eb-24fe-494b-8c46-8ef61799962a</UserSecretsId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Screenplay.XUnit.xml</DocumentationFile>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Screenplay.XUnit.xml</DocumentationFile>
-    <ConsolePause>false</ConsolePause>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSF.Screenplay, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83989bab8a1a4730, processorArchitecture=MSIL">
-      <HintPath>..\packages\CSF.Screenplay.1.0.0\lib\net45\CSF.Screenplay.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Screenplay.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83989bab8a1a4730, processorArchitecture=MSIL">
-      <HintPath>..\packages\CSF.Screenplay.Reporting.1.0.0\lib\net45\CSF.Screenplay.Reporting.dll</HintPath>
-    </Reference>
-    <Reference Include="CSF.Utils, Version=6.1.1.0, Culture=neutral, PublicKeyToken=83989bab8a1a4730, processorArchitecture=MSIL">
-      <HintPath>..\packages\CSF.Utils.6.1.1\lib\net45\CSF.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="CSF.FlexDi">
-      <HintPath>..\packages\CSF.FlexDi.1.0.2\lib\net45\CSF.FlexDi.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.core, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensibility.core.2.8.1\lib\net452\xunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensibility.execution.2.8.1\lib\net452\xunit.execution.desktop.dll</HintPath>
-    </Reference>
+    <PackageReference Include="CSF.FlexDi" Version="1.0.2" />
+    <PackageReference Include="CSF.Screenplay" Version="1.0.0" />
+    <PackageReference Include="CSF.Screenplay.Reporting" Version="1.0.0" />
+    <PackageReference Include="CSF.Utils" Version="6.1.1" />
+    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.8.1" />
+    <PackageReference Include="xunit.extensibility.execution" Version="2.8.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AssemblyFixture\ScenarioTestFramework.cs" />
-    <Compile Include="AssemblyFixture\ScenarioTestAssemblyRunner.cs" />
-    <Compile Include="AssemblyFixture\ScenarioTestCollectionRunner.cs" />
-    <Compile Include="AssemblyFixture\ScenarioTestFrameworkExecutor.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScenarioTestCase.cs" />
-    <Compile Include="ScenarioTestCaseRunner.cs" />
-    <Compile Include="ScenarioTestRunner.cs" />
-    <Compile Include="ScreenplayAssemblyAttribute.cs" />
-    <Compile Include="ScreenplayAttribute.cs" />
-    <Compile Include="ScenarioAdapter.cs" />
-    <Compile Include="IntegrationReader.cs" />
-    <Compile Include="ScreenplayDiscoverer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Package.nuspec" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
